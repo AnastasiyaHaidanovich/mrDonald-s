@@ -43,6 +43,7 @@ const Login = styled.button`
     cursor: pointer;
     justify-content: space-between;
     font-size: 16px;
+    margin-right: 20px;
     height: 54px;
 `;
 

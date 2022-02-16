@@ -9,18 +9,28 @@ const MenuStyled = styled.main`
     margin-top: 80px;
 
 `;
-export const Menu = () => (
+
+export function Menu({ setOpenItem }) {
+    return (
     /*jshint ignore: start */
-    <MenuStyled>
-        <Banner />
-        <section>
-            <h2>Бургеры</h2>
-            <ListItem itemList={dbMenu.burger}/>
-        </section>
-        <section>
-            <h2>Закуски / Напитки</h2>
-            <ListItem itemList={dbMenu.other}/>
-        </section>
-    </MenuStyled>
-    /*jshint ignore: end */
-);
+        <MenuStyled>
+            <Banner />
+            <section>
+                <h2>Бургеры</h2>
+                <ListItem 
+                itemList={dbMenu.burger} 
+                setOpenItem={setOpenItem}
+                />
+            </section>
+            <section>
+                <h2>Закуски / Напитки</h2>
+                <ListItem 
+                    itemList={dbMenu.other} 
+                    setOpenItem={setOpenItem}
+                    />
+            </section>
+        </MenuStyled>
+        /*jshint ignore: end */
+    );
+}
+    
