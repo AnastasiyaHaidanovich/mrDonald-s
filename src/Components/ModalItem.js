@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from './ButtonCheckout';
 
 const Overlay = styled.div`
     display: flex;
@@ -18,7 +19,7 @@ const Modal = styled.div`
     background-color: #fff;
     width: 500px;
     height: 400px;
-    position: relative3
+    position: relative;
 `;
 
 const Banner = styled.div`
@@ -26,26 +27,20 @@ const Banner = styled.div`
     background-image: url(${({img})=> img});
     background-size: cover;
     background-position: center;
-    margin-bottom: 20px;
 `;
 
-const ModalText = styled.div`
-    width: 80%;
+const ModalContent = styled.div`
+    padding: 30px;
     margin: 0 auto;
     display: flex;
-    align-items: top;
+    flex-direction: column;
     justify-content: space-between;
+    height: calc(100% - 200px);
 `;
 
-const AddButton = styled.button`
-    position: absolute;
-    font-size: 21px;
-    color: #fff;
-    background-color: rgba(41, 155, 1, 1);
-    padding: 20px 75px;
-    border: none;
-    bottom: 50px;
-    left: calc(50% - 121px);
+const HeaderContent = styled.div`
+    display: flex;
+    justify-content: space-between;
 `;
 
 export const ModalItem = ({ openItem, setOpenItem }) => {
@@ -62,12 +57,14 @@ export const ModalItem = ({ openItem, setOpenItem }) => {
         <Overlay id="overlay" onClick={closeModal}>
             <Modal>
                 <Banner img={openItem.img} />
-                <ModalText>
-                    <h3>{openItem.name}</h3>
-                    <h3>{openItem.price.toLocaleString('ru-RU',
-                    {style: 'currency', currency: 'RUB'})}</h3>
-                </ModalText>
-                <AddButton>Добавить</AddButton>
+                <ModalContent>
+                        <HeaderContent>
+                            <h3>{openItem.name}</h3>
+                            <h3>{openItem.price.toLocaleString('ru-RU',
+                            {style: 'currency', currency: 'RUB'})}</h3>
+                        </HeaderContent>
+                    <Button>Добавить</Button>
+                </ModalContent>
             </Modal>
         </Overlay>
         /*jshint ignore: end */
