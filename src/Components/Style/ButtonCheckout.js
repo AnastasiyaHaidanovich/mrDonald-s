@@ -13,7 +13,7 @@ export const Button = styled.button`
     transition-property: color, background-color, border-color;
     transition-duration: 0.3s;
     &:hover {
-        background-color: rgba(0, 255, 0, 0.3);
+        background-color: rgba(255, 255, 255, 1);
         color: rgba(41, 155, 1, 1);
         border-color: rgba(41, 155, 1, 1);
     }
