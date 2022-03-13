@@ -5,6 +5,8 @@ import { CountItem } from './CountItem';
 import { useCount } from '../Hooks/useCount';
 import { totalPrice } from '../../functions/secondaryFunction';
 import { formatCurrency } from '../../functions/secondaryFunction';
+import { Toppings } from './Toppings';
+import { useToppings } from '../Hooks/useToppings';
 
 const Overlay = styled.div`
     display: flex;
@@ -22,8 +24,10 @@ const Overlay = styled.div`
 const Modal = styled.div`
     background-color: #fff;
     width: 500px;
-    height: 400px;
+    max-height: 70%;
     position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
 `;
 
 const Banner = styled.div`
@@ -34,7 +38,7 @@ const Banner = styled.div`
 `;
 
 const ModalContent = styled.div`
-    padding: 30px;
+    padding: 20px 30px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -45,15 +49,18 @@ const ModalContent = styled.div`
 const HeaderContent = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 `;
 
 const TotalPriceItem = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 `;
 
-
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+
+    const toppings = useToppings(openItem);
 
     const counter = useCount();
 
@@ -65,7 +72,8 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
     const order = {
         ...openItem,
-        count: counter.count
+        count: counter.count,
+        topping: toppings.toppings
     };
 
     const addToOrder = () => {
@@ -84,6 +92,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                             <h3>{formatCurrency(openItem.price)}</h3>
                         </HeaderContent>
                         <CountItem {...counter}/>
+                        {openItem.toppings && <Toppings {...toppings} />}
                         <TotalPriceItem>
                             <span>Итого:</span>
                             <span>{formatCurrency(totalPrice(order))}</span>
