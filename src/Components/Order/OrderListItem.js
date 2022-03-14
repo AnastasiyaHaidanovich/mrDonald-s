@@ -33,29 +33,26 @@ const TrashButton = styled.button`
     cursor: pointer;
 `;
 
-const ToppingsWrapper = styled.div`
-    flex-basis: 100%;
-`;
-const ToppingsOrdered = styled.span`
-    font-size: 0.5em;
+const ToppingsOrdered = styled.div`
+    font-size: 0.6em;
     margin-right: 5px;
+    color: #9a9a9a;
+    margin-top: 5px;
+    width: 100%;
 `;
 
 export const OrderListItem = ({ order }) => (
     /*jshint ignore: start */
     <OrderItemStyled>
-        <ItemName>{order.name}</ItemName>
+        <ItemName>{order.name} {order.choice}</ItemName>
         <span>{order.count}</span>
         <ItemPrice>{formatCurrency(totalPrice(order))}</ItemPrice>
         <TrashButton/>
-
-        <ToppingsWrapper>
-            {order.topping.filter(item => item.checked).map(item => (
-                <ToppingsOrdered>
-                    {item.name}
-                </ToppingsOrdered>      
-            ))}
-        </ToppingsWrapper>          
+        <ToppingsOrdered>
+            {order.topping.filter(item => item.checked)
+            .map(item => item.name)
+            .join(", ")}
+        </ToppingsOrdered>      
     </OrderItemStyled>
     /*jshint ignore: end */
 );

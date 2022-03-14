@@ -12,7 +12,7 @@ const OrderStyled = styled.section`
     top: 80px;
     left: 0;
     background-color: #fff;
-    min-width: 380px;
+    width: 380px;
     height: calc(100% - 80px);
     box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.25);
     padding: 20px;
@@ -57,6 +57,8 @@ export const Order = ({ orders }) => {
 
     const totalCounter = orders.reduce((result, order) => 
     order.count + result, 0);
+
+    console.log(orders);
     
     return (
         /*jshint ignore: start */

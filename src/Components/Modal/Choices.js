@@ -1,20 +1,22 @@
 import React from 'react';
 import { AddWrap, AddLabel, AddInput } from '../../functions/secondaryFunction';
 
-export const Toppings = ({ toppings, checkToppings }) => {
+export const Choices = ({ openItem, choice, changeChoices }) => {
     return (
         /*jshint ignore: start */
         <>
-            <h3>Добавки</h3>
+            <h3>Выберите:</h3>
             <AddWrap>
-                {toppings.map((item, i) => (
+                {openItem.choices.map((item, i) => (
                     <AddLabel key={i}>
                         <AddInput 
-                        type="checkbox" 
-                        checked={item.checked} 
-                        onChange={() => checkToppings(i)}
+                        type="radio" 
+                        name="choices"
+                        checked={item === choice} 
+                        value={item}
+                        onChange={changeChoices}
                         />
-                        {item.name}
+                        {item}
                     </AddLabel>
                 ))}
                 
