@@ -50,7 +50,7 @@ const EmptyList = styled.p`
     text-align: center;
 `;
 
-export const Order = ({ orders }) => {
+export const Order = ({ orders, setOrders }) => {
 
     const total = orders.reduce((result, order) => 
         totalPrice(order) + result, 0);
@@ -58,7 +58,11 @@ export const Order = ({ orders }) => {
     const totalCounter = orders.reduce((result, order) => 
     order.count + result, 0);
 
-    console.log(orders);
+    const deleteItem = index => {
+        const newOrders = [...orders];
+        newOrders.splice(index,1);
+        setOrders(newOrders);
+    };
     
     return (
         /*jshint ignore: start */
@@ -68,7 +72,12 @@ export const Order = ({ orders }) => {
                 <OrderContent>
                     {orders.length ?
                     <OrderList>
-                        {orders.map(order => <OrderListItem order={order} />)}
+                        {orders.map((order, index) => <OrderListItem 
+                            key={index} 
+                            index={index}
+                            order={order} 
+                            deleteItem={deleteItem} 
+                        />)}
                     </OrderList> : 
                     <EmptyList>Список заказов пуст</EmptyList>}
                 </OrderContent>

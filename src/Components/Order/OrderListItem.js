@@ -41,13 +41,13 @@ const ToppingsOrdered = styled.div`
     width: 100%;
 `;
 
-export const OrderListItem = ({ order }) => (
+export const OrderListItem = ({ order, index, deleteItem }) => (
     /*jshint ignore: start */
     <OrderItemStyled>
         <ItemName>{order.name} {order.choice}</ItemName>
         <span>{order.count}</span>
         <ItemPrice>{formatCurrency(totalPrice(order))}</ItemPrice>
-        <TrashButton/>
+        <TrashButton onClick={() => deleteItem(index)}/>
         <ToppingsOrdered>
             {order.topping.filter(item => item.checked)
             .map(item => item.name)
