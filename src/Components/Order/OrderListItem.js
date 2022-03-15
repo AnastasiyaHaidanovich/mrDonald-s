@@ -41,13 +41,16 @@ const ToppingsOrdered = styled.div`
     width: 100%;
 `;
 
-export const OrderListItem = ({ order, index, deleteItem }) => (
+export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => (
     /*jshint ignore: start */
-    <OrderItemStyled>
+    <OrderItemStyled onClick={() => setOpenItem({...order, index})}>
         <ItemName>{order.name} {order.choice}</ItemName>
         <span>{order.count}</span>
         <ItemPrice>{formatCurrency(totalPrice(order))}</ItemPrice>
-        <TrashButton onClick={() => deleteItem(index)}/>
+        <TrashButton onClick={(e) => {
+            e.stopPropagation();
+            deleteItem(index)}
+        }/>
         <ToppingsOrdered>
             {order.topping.filter(item => item.checked)
             .map(item => item.name)

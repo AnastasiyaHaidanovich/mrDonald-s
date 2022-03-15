@@ -50,13 +50,13 @@ const EmptyList = styled.p`
     text-align: center;
 `;
 
-export const Order = ({ orders, setOrders }) => {
+export const Order = ({ orders, setOrders, setOpenItem }) => {
 
     const total = orders.reduce((result, order) => 
         totalPrice(order) + result, 0);
 
     const totalCounter = orders.reduce((result, order) => 
-    order.count + result, 0);
+        order.count + result, 0);
 
     const deleteItem = index => {
         const newOrders = [...orders];
@@ -77,6 +77,7 @@ export const Order = ({ orders, setOrders }) => {
                             index={index}
                             order={order} 
                             deleteItem={deleteItem} 
+                            setOpenItem={setOpenItem}
                         />)}
                     </OrderList> : 
                     <EmptyList>Список заказов пуст</EmptyList>}
