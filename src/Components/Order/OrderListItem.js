@@ -8,6 +8,7 @@ const OrderItemStyled = styled.li`
     display: flex;
     margin: 15px 0;
     flex-wrap: wrap;
+    cursor: pointer;
 `;
 
 const ItemName = styled.span`
